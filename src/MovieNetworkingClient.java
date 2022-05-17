@@ -16,7 +16,7 @@ public class MovieNetworkingClient {
 
     public MovieNetworkingClient()
     {
-        APIkey = "your_API_key_goes_here!";
+        APIkey = "301995e2246067ea90f17ab07e41cdf6";
         baseUrl = "https://api.themoviedb.org/3";
     }
 
