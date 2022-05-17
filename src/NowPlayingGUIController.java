@@ -27,6 +27,7 @@ public class NowPlayingGUIController implements ActionListener
     private JTextField movieEntryField;
     private ArrayList<Movie> nowPlaying;
     private MovieNetworkingClient client;
+    private JFrame frame;
 
     // constructor, which calls helper methods
     // to setup the GUI then load the now playing list
@@ -53,11 +54,11 @@ public class NowPlayingGUIController implements ActionListener
         // Creating an image from a jpg file stored in the src directory
         ImageIcon image = new ImageIcon("src/tmdblogo.jpg");
         Image imageData = image.getImage(); // transform it
-        Image scaledImage = imageData.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        Image scaledImage = imageData.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         image = new ImageIcon(scaledImage);  // transform it back
         JLabel pictureLabel = new JLabel(image);
         JLabel welcomeLabel = new JLabel("   Movies Now Playing!");
-        welcomeLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
+        welcomeLabel.setFont(new Font("Helvetica", Font.BOLD, 18));
         welcomeLabel.setForeground(Color.blue);
 
         JPanel logoWelcomePanel = new JPanel(); // the panel is not visible in output
@@ -67,7 +68,7 @@ public class NowPlayingGUIController implements ActionListener
         // middle panel with movie list
         JPanel movieListPanel = new JPanel();
         movieInfo.setText("movies loading...");
-        movieInfo.setFont(new Font("Helvetica", Font.PLAIN, 16));
+        movieInfo.setFont(new Font("Helvetica", Font.PLAIN, 14));
         movieInfo.setWrapStyleWord(true);
         movieInfo.setLineWrap(true);
         movieListPanel.add(movieInfo);
@@ -145,7 +146,7 @@ public class NowPlayingGUIController implements ActionListener
         try {
             URL imageURL = new URL(detail.getPosterPath());
             BufferedImage image = ImageIO.read(imageURL);
-            JFrame frame = new JFrame("Poster for " + movie.getTitle());
+            frame = new JFrame("Poster for " + movie.getTitle());
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             JLabel movieImage = new JLabel(new ImageIcon(image));
             frame.add(movieImage);
@@ -187,6 +188,7 @@ public class NowPlayingGUIController implements ActionListener
         {
             movieEntryField.setText("");
             loadNowPlaying();
+            frame.setVisible(false);
         }
     }
 }
